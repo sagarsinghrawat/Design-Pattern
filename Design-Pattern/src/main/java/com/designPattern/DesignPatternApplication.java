@@ -1,3 +1,4 @@
+
 package com.designPattern;
 
 import java.io.FileInputStream;
@@ -14,7 +15,18 @@ import com.designPattern.AbstractFactoryMethod.Employee;
 import com.designPattern.AbstractFactoryMethod.EmployeeFactory;
 import com.designPattern.AbstractFactoryMethod.ManagerFactory;
 import com.designPattern.AbstractFactoryMethod.WebFactory;
+import com.designPattern.adapterDesignPattern.AdapterCharger;
+import com.designPattern.adapterDesignPattern.AndroidChargerImpl;
+import com.designPattern.adapterDesignPattern.AppleCharger;
+import com.designPattern.adapterDesignPattern.AppleChargerImpl;
+import com.designPattern.adapterDesignPattern.IPhone;
 import com.designPattern.builderPattern.User;
+import com.designPattern.iteratorPattern.MyIterator;
+import com.designPattern.iteratorPattern.MyIteratorImpl;
+import com.designPattern.iteratorPattern.Usermanagement;
+import com.designPattern.observerPattern.Observer;
+import com.designPattern.observerPattern.Subscriber;
+import com.designPattern.observerPattern.YoutubeChannel;
 import com.designPattern.prototypePattern.NetworkConnection;
 
 
@@ -114,25 +126,69 @@ public class DesignPatternApplication {
 		/**************************************************Builder Pattern*******************************************************/
 		/**************************************************IMPORTANT*******************************************************/
 		
-		User user = new User.UserBuilder()
-							.setUserEmailId("sagar@gmail.com")
-							.setUserId("sagar123")
-							.setUserName("sagar")
-							.build();
-		System.out.println(user);
-		
-		User user2 = User.UserBuilder.builder().setUserEmailId("ankit@gmail.com").setUserName("ankit").build();
-		System.out.println(user2);
+		/*
+		 * User user = new User.UserBuilder() .setUserEmailId("sagar@gmail.com")
+		 * .setUserId("sagar123") .setUserName("sagar") .build();
+		 * System.out.println(user);
+		 * 
+		 * User user2 =
+		 * User.UserBuilder.builder().setUserEmailId("ankit@gmail.com").setUserName(
+		 * "ankit").build(); System.out.println(user2);
+		 */
 		
 		
 		/**************************************************Prototype Pattern*******************************************************/
-		NetworkConnection networkConnection = new NetworkConnection();
-		networkConnection.setIp("192.168.0.1");
-		networkConnection.loadImportantData();
-		System.out.println(networkConnection);
+		/*
+		 * NetworkConnection networkConnection = new NetworkConnection();
+		 * networkConnection.setIp("192.168.0.1");
+		 * networkConnection.loadImportantData(); System.out.println(networkConnection);
+		 * 
+		 * NetworkConnection networkConnection2 =
+		 * (NetworkConnection)networkConnection.clone();
+		 * System.out.println(networkConnection2);
+		 */
 		
-		NetworkConnection networkConnection2 = (NetworkConnection)networkConnection.clone();
-		System.out.println(networkConnection2);
+		
+		/**************************************************Observer Design Pattern*******************************************************/
+		/*
+		 * YoutubeChannel channel = new YoutubeChannel();
+		 * 
+		 * Observer ob1 = new Subscriber("sagar"); Observer ob2 = new
+		 * Subscriber("prerna"); Observer ob3 = new Subscriber("harshit");
+		 * 
+		 * channel.subscribe(ob1); channel.subscribe(ob2); channel.subscribe(ob3);
+		 * 
+		 * channel.newVideoUpload("learn python in 30 minutes");
+		 */
+		
+		/**************************************************Iterator Design Pattern*******************************************************/
+		/*
+		 * Usermanagement usermanagement = new Usermanagement();
+		 * usermanagement.addUser(new com.designPattern.iteratorPattern.User("sagar",
+		 * 1)); usermanagement.addUser(new
+		 * com.designPattern.iteratorPattern.User("prerna", 2));
+		 * usermanagement.addUser(new com.designPattern.iteratorPattern.User("ankit",
+		 * 3)); usermanagement.addUser(new
+		 * com.designPattern.iteratorPattern.User("shubham", 4));
+		 * 
+		 * MyIterator iterator = usermanagement.getIterator();
+		 * 
+		 * while(iterator.hasNext()) { com.designPattern.iteratorPattern.User user =
+		 * (com.designPattern.iteratorPattern.User)iterator.next();
+		 * System.out.println("Id : "+user.getId()+", Name : "+user.getName()); }
+		 */
+		
+		/**************************************************Adapter Design Pattern*******************************************************/
+		
+		/*
+		 * AppleCharger charger = new AppleChargerImpl(); 
+		 * IPhone iPhone = new IPhone(charger); 
+		 * iPhone.chargeIphone();
+		 */
+		
+		AppleCharger appleCharger = new AdapterCharger(new AndroidChargerImpl());
+		appleCharger.chargeApplePhone();
+		
 	}
 
 }
